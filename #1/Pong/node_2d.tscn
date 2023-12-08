@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhhmtjfynwu0x"]
+
+[ext_resource type="PackedScene" uid="uid://ck7ydpov1205s" path="res://player.tscn" id="1_x66h8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_elf52"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1w5en"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17tyc"]
+size = Vector2(1921.75, 14)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Top thing" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_elf52")
+position = Vector2(960.125, -2.38419e-07)
+scale = Vector2(1919.75, 16)
+texture = SubResource("CanvasTexture_1w5en")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Top thing"]
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top thing/StaticBody2D"]
+position = Vector2(-6.50883e-05, 0)
+scale = Vector2(0.000520427, 0.0714286)
+shape = SubResource("RectangleShape2D_17tyc")
+
+[node name="Bot thing" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_elf52")
+position = Vector2(964, 764)
+scale = Vector2(1919.75, 16)
+texture = SubResource("CanvasTexture_1w5en")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bot thing"]
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bot thing/StaticBody2D"]
+position = Vector2(-6.50883e-05, 0)
+scale = Vector2(0.000520427, 0.0714286)
+shape = SubResource("RectangleShape2D_17tyc")
+one_way_collision = true
+
+[node name="Player" parent="." instance=ExtResource("1_x66h8")]
