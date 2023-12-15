@@ -2,23 +2,18 @@
 
 [ext_resource type="Script" path="res://player.gd" id="1_lux0q"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_twuk4"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_5yb5j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqsij"]
-size = Vector2(1, 1.01)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4b8cu"]
+size = Vector2(40, 100)
 
-[node name="Player" type="Sprite2D"]
-position = Vector2(50, 382)
-scale = Vector2(26, 100)
-texture = SubResource("CanvasTexture_twuk4")
+[node name="player" type="CharacterBody2D"]
 script = ExtResource("1_lux0q")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-disable_mode = 1
-can_sleep = false
-freeze_mode = 1
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.415686, 1, 1)
+scale = Vector2(40, 100)
+texture = SubResource("CanvasTexture_5yb5j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(1.19209e-07, -0.00500035)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_hqsij")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4b8cu")

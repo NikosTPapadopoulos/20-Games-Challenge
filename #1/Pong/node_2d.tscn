@@ -1,6 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhhmtjfynwu0x"]
+[gd_scene load_steps=12 format=3 uid="uid://bhhmtjfynwu0x"]
 
 [ext_resource type="PackedScene" uid="uid://ck7ydpov1205s" path="res://player.tscn" id="1_x66h8"]
+[ext_resource type="PackedScene" uid="uid://8d0nb3dnt03p" path="res://Opponent.tscn" id="2_sodj6"]
+[ext_resource type="Script" path="res://Ball.gd" id="3_jibgy"]
+[ext_resource type="Texture2D" uid="uid://bikdnd1gnqo5c" path="res://R.png" id="4_wh55j"]
+[ext_resource type="PackedScene" uid="uid://bcmuk5vlfjbq8" path="res://pause.tscn" id="5_xxlhe"]
+[ext_resource type="AudioStream" uid="uid://kcpoegseekrs" path="res://Recording_2.wav" id="6_i3b5b"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_elf52"]
 
@@ -9,12 +14,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17tyc"]
 size = Vector2(1921.75, 14)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_ymr0k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_arhdb"]
+radius = 1480.0
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Top thing" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_elf52")
-position = Vector2(960.125, -2.38419e-07)
-scale = Vector2(1919.75, 16)
+position = Vector2(683, 0)
+scale = Vector2(1366, 32)
 texture = SubResource("CanvasTexture_1w5en")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Top thing"]
@@ -27,8 +37,8 @@ shape = SubResource("RectangleShape2D_17tyc")
 
 [node name="Bot thing" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_elf52")
-position = Vector2(964, 764)
-scale = Vector2(1919.75, 16)
+position = Vector2(683, 736)
+scale = Vector2(1366, 32)
 texture = SubResource("CanvasTexture_1w5en")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Bot thing"]
@@ -40,4 +50,54 @@ scale = Vector2(0.000520427, 0.0714286)
 shape = SubResource("RectangleShape2D_17tyc")
 one_way_collision = true
 
-[node name="Player" parent="." instance=ExtResource("1_x66h8")]
+[node name="middle line" type="Sprite2D" parent="."]
+modulate = Color(0.384314, 0.384314, 0.384314, 1)
+show_behind_parent = true
+position = Vector2(683, 388)
+scale = Vector2(16, 764)
+texture = SubResource("CanvasTexture_ymr0k")
+
+[node name="player" parent="." instance=ExtResource("1_x66h8")]
+position = Vector2(50, 384)
+
+[node name="opponent" parent="." instance=ExtResource("2_sodj6")]
+position = Vector2(1316, 384)
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(638, 384)
+script = ExtResource("3_jibgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("4_wh55j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+scale = Vector2(0.015, 0.015)
+shape = SubResource("CircleShape2D_arhdb")
+
+[node name="Effect" type="AudioStreamPlayer" parent="Ball"]
+stream = ExtResource("6_i3b5b")
+volume_db = 10.0
+
+[node name="PlayerPoints" type="Label" parent="."]
+offset_left = 572.0
+offset_top = 35.0
+offset_right = 612.0
+offset_bottom = 58.0
+scale = Vector2(2.77143, 2.77143)
+text = "0"
+horizontal_alignment = 1
+text_direction = 1
+
+[node name="EnemyPoints" type="Label" parent="."]
+offset_left = 686.0
+offset_top = 35.0
+offset_right = 726.0
+offset_bottom = 58.0
+scale = Vector2(2.77143, 2.77143)
+text = "0"
+horizontal_alignment = 1
+text_direction = 1
+
+[node name="Pause" parent="." instance=ExtResource("5_xxlhe")]
+visible = false

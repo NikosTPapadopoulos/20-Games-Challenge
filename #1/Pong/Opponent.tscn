@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://8d0nb3dnt03p"]
+
+[ext_resource type="Script" path="res://Opponent.gd" id="1_pxwk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlk61"]
+size = Vector2(1, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n2nnk"]
+
+[node name="opponent" type="CharacterBody2D"]
+script = ExtResource("1_pxwk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(40, 100)
+shape = SubResource("RectangleShape2D_xlk61")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(40, 100)
+texture = SubResource("CanvasTexture_n2nnk")

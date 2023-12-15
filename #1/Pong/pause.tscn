@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcmuk5vlfjbq8"]
+
+[ext_resource type="Script" path="res://pause.gd" id="1_au46l"]
+
+[node name="Pause" type="PanelContainer"]
+offset_right = 1366.0
+offset_bottom = 768.0
+script = ExtResource("1_au46l")
+
+[node name="Resume" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="Resume"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 468.0
+offset_right = 600.0
+offset_bottom = 641.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.192157, 0.192157, 0.192157, 1)
+theme_override_font_sizes/font_size = 120
+text = "Resume"
+
+[node name="Restart" type="Button" parent="Resume"]
+layout_mode = 0
+offset_left = 829.0
+offset_top = 467.0
+offset_right = 1257.0
+offset_bottom = 640.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_font_sizes/font_size = 120
+text = "Restart"
+
+[node name="Audio" type="HScrollBar" parent="Resume"]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 128.0
+offset_right = 1131.0
+offset_bottom = 192.0
+max_value = 20.0
+value = 20.0
+
+[node name="Label" type="Label" parent="Resume"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 40.0
+offset_right = 512.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 64
+text = "SOUND"
+vertical_alignment = 2
+
+[connection signal="pressed" from="Resume/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Resume/Restart" to="." method="_on_restart_pressed"]
