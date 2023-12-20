@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c865oxb8f8sw7"]
+
+[ext_resource type="Script" path="res://pipe.gd" id="2_bd63a"]
+[ext_resource type="PackedScene" uid="uid://bw38srmta4gix" path="res://player.tscn" id="2_hk45y"]
+[ext_resource type="PackedScene" uid="uid://x0egeovxm4uw" path="res://pipe.tscn" id="2_rqwjm"]
+[ext_resource type="PackedScene" uid="uid://t42yptea766d" path="res://game_over.tscn" id="3_w6a2m"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dm6ud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1htso"]
+size = Vector2(1e+09, 50)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_bd63a")
+Pipes = ExtResource("2_rqwjm")
+
+[node name="Bot" type="StaticBody2D" parent="."]
+position = Vector2(0, 768)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bot"]
+position = Vector2(683, 0)
+scale = Vector2(1e+09, 50)
+texture = SubResource("CanvasTexture_dm6ud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bot"]
+position = Vector2(683, 0)
+shape = SubResource("RectangleShape2D_1htso")
+
+[node name="Player" parent="." instance=ExtResource("2_hk45y")]
+Pipes = ExtResource("2_bd63a")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(50, 384)
+limit_top = 0
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_speed = 10.0
+
+[node name="GameOver" parent="." instance=ExtResource("3_w6a2m")]
+top_level = true
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://t42yptea766d"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_2p7h5"]
+
+[node name="GameOver" type="PanelContainer"]
+offset_right = 1366.0
+offset_bottom = 768.0
+script = ExtResource("1_2p7h5")
+
+[node name="Lost" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="Lost"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 80.0
+offset_right = 1014.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 124
+text = "GAME OVER"
+
+[node name="Restart" type="Button" parent="Lost"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 520.0
+offset_right = 912.0
+offset_bottom = 693.0
+theme_override_font_sizes/font_size = 120
+text = "RESTART"
+
+[connection signal="pressed" from="Lost/Restart" to="." method="_on_restart_pressed"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://ufnl7t30rkii"]
+
+[ext_resource type="Script" path="res://pipe.gd" id="1_8iov8"]
+[ext_resource type="PackedScene" uid="uid://x0egeovxm4uw" path="res://pipe.tscn" id="2_xaeoi"]
+[ext_resource type="PackedScene" uid="uid://bw38srmta4gix" path="res://player.tscn" id="3_l7jgl"]
+[ext_resource type="AudioStream" uid="uid://ceetwbb87ohcs" path="res://Audio/Lose_FappyBird.wav" id="4_e4gfb"]
+[ext_resource type="PackedScene" uid="uid://t42yptea766d" path="res://game_over.tscn" id="4_ikh8r"]
+[ext_resource type="Script" path="res://Points.gd" id="5_i0asg"]
+[ext_resource type="PackedScene" uid="uid://c7pyahkl8otpv" path="res://pause.tscn" id="5_pktar"]
+[ext_resource type="Script" path="res://HighScore.gd" id="6_xgqkn"]
+[ext_resource type="AudioStream" uid="uid://d3mwd66cbof7i" path="res://Audio/Point_FlappyBird.wav" id="7_q6jxk"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0cggu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijkg1"]
+size = Vector2(1e+14, 50)
+
+[node name="MainSceen" type="Node2D"]
+script = ExtResource("1_8iov8")
+Pipes = ExtResource("2_xaeoi")
+
+[node name="GameOver" parent="." node_paths=PackedStringArray("f", "p", "points") instance=ExtResource("4_ikh8r")]
+visible = false
+top_level = true
+f = NodePath("..")
+p = NodePath("../Player")
+points = NodePath("../Points")
+
+[node name="Sound" type="AudioStreamPlayer" parent="GameOver"]
+stream = ExtResource("4_e4gfb")
+volume_db = -4.0
+
+[node name="Pause" parent="." instance=ExtResource("5_pktar")]
+top_level = true
+
+[node name="BotThing" type="StaticBody2D" parent="."]
+position = Vector2(0, 768)
+
+[node name="Sprite2D" type="Sprite2D" parent="BotThing"]
+scale = Vector2(1e+14, 50)
+texture = SubResource("CanvasTexture_0cggu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BotThing"]
+shape = SubResource("RectangleShape2D_ijkg1")
+
+[node name="Player" parent="." instance=ExtResource("3_l7jgl")]
+Pipes = ExtResource("1_8iov8")
+Pause = Object(PanelContainer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":false,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":true,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":1366.0,"offset_bottom":768.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","script":Resource("res://pause.gd"))
+
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(50, 384)
+limit_top = 0
+limit_bottom = 0
+
+[node name="Points" type="Label" parent="." node_paths=PackedStringArray("p", "GameOver")]
+top_level = true
+offset_right = 40.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
+text = "-"
+script = ExtResource("5_i0asg")
+p = NodePath("../Player")
+GameOver = NodePath("../GameOver")
+
+[node name="HighScore" type="Label" parent="." node_paths=PackedStringArray("Points", "GameOver")]
+top_level = true
+offset_right = 18.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+script = ExtResource("6_xgqkn")
+Points = NodePath("../Points")
+GameOver = NodePath("../GameOver")
+
+[node name="PointAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_q6jxk")
+volume_db = -8.0

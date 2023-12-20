@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://ufnl7t30rkii"]
+
+[ext_resource type="Script" path="res://pipe.gd" id="1_8iov8"]
+[ext_resource type="PackedScene" uid="uid://x0egeovxm4uw" path="res://pipe.tscn" id="2_xaeoi"]
+[ext_resource type="PackedScene" uid="uid://bw38srmta4gix" path="res://player.tscn" id="3_l7jgl"]
+[ext_resource type="AudioStream" uid="uid://ceetwbb87ohcs" path="res://Audio/Lose_FappyBird.wav" id="4_e4gfb"]
+[ext_resource type="PackedScene" uid="uid://t42yptea766d" path="res://game_over.tscn" id="4_ikh8r"]
+[ext_resource type="Script" path="res://Points.gd" id="5_i0asg"]
+[ext_resource type="PackedScene" uid="uid://c7pyahkl8otpv" path="res://pause.tscn" id="5_pktar"]
+[ext_resource type="Script" path="res://HighScore.gd" id="6_xgqkn"]
+[ext_resource type="AudioStream" uid="uid://d3mwd66cbof7i" path="res://Audio/Point_FlappyBird.wav" id="7_q6jxk"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0cggu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijkg1"]
+size = Vector2(1e+14, 50)
+
+[node name="MainSceen" type="Node2D"]
+script = ExtResource("1_8iov8")
+Pipes = ExtResource("2_xaeoi")
+
+[node name="GameOver" parent="." node_paths=PackedStringArray("f", "p", "points") instance=ExtResource("4_ikh8r")]
+top_level = true
+f = NodePath("..")
+p = NodePath("../Player")
+points = NodePath("../Points")
+
+[node name="Sound" type="AudioStreamPlayer" parent="GameOver"]
+stream = ExtResource("4_e4gfb")
+volume_db = -4.0
+
+[node name="Pause" parent="." instance=ExtResource("5_pktar")]
+top_level = true
+
+[node name="BotThing" type="StaticBody2D" parent="."]
+position = Vector2(0, 768)
+
+[node name="Sprite2D" type="Sprite2D" parent="BotThing"]
+scale = Vector2(1e+14, 50)
+texture = SubResource("CanvasTexture_0cggu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BotThing"]
+shape = SubResource("RectangleShape2D_ijkg1")
+
+[node name="Player" parent="." node_paths=PackedStringArray("GameOverPanel", "Pause") instance=ExtResource("3_l7jgl")]
+GameOverPanel = NodePath("../GameOver")
+Pipes = ExtResource("1_8iov8")
+Pause = NodePath("../Pause")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(50, 384)
+limit_top = 0
+limit_bottom = 0
+
+[node name="Points" type="Label" parent="." node_paths=PackedStringArray("p", "GameOver")]
+top_level = true
+offset_right = 40.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
+text = "-"
+script = ExtResource("5_i0asg")
+p = NodePath("../Player")
+GameOver = NodePath("../GameOver")
+
+[node name="HighScore" type="Label" parent="." node_paths=PackedStringArray("Points", "GameOver")]
+top_level = true
+offset_right = 18.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+script = ExtResource("6_xgqkn")
+Points = NodePath("../Points")
+GameOver = NodePath("../GameOver")
+
+[node name="PointAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_q6jxk")
+volume_db = -8.0

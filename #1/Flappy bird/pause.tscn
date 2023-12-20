@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7pyahkl8otpv"]
+
+[ext_resource type="Script" path="res://pause.gd" id="1_lbiev"]
+
+[node name="Pause" type="PanelContainer"]
+visible = false
+offset_right = 1366.0
+offset_bottom = 768.0
+script = ExtResource("1_lbiev")
+
+[node name="Pause" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="Paused" type="Label" parent="Pause"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 80.0
+offset_right = 906.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 124
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Pause"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 520.0
+offset_right = 912.0
+offset_bottom = 693.0
+theme_override_font_sizes/font_size = 120
+text = "RESUME"
+
+[connection signal="pressed" from="Pause/Resume" to="." method="_on_resume_pressed"]
