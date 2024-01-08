@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://vrggqdq6axtw"]
+
+[ext_resource type="Script" path="res://panels.gd" id="1_qe88q"]
+
+[node name="Panels" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1366.0
+offset_bottom = 768.0
+script = ExtResource("1_qe88q")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1366.0
+offset_bottom = 768.0
+
+[node name="Pause" type="Panel" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Paused" type="Label" parent="PanelContainer/Pause"]
+layout_mode = 0
+offset_right = 1366.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 128
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="PanelContainer/Pause"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 600.0
+offset_right = 514.0
+offset_bottom = 696.0
+theme_override_font_sizes/font_size = 64
+text = "RESUME"
+
+[node name="Quit" type="Button" parent="PanelContainer/Pause"]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 600.0
+offset_right = 1118.0
+offset_bottom = 696.0
+theme_override_font_sizes/font_size = 64
+text = "QUIT"
+
+[node name="GameOver" type="Panel" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Text" type="Label" parent="PanelContainer/GameOver"]
+layout_mode = 0
+offset_right = 1366.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 128
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="PanelContainer/GameOver"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 600.0
+offset_right = 514.0
+offset_bottom = 696.0
+theme_override_font_sizes/font_size = 64
+text = "RESTART"
+
+[node name="Quit" type="Button" parent="PanelContainer/GameOver"]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 600.0
+offset_right = 1118.0
+offset_bottom = 696.0
+theme_override_font_sizes/font_size = 64
+text = "QUIT"
+
+[connection signal="pressed" from="PanelContainer/Pause/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/Pause/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PanelContainer/GameOver/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/GameOver/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3kkm5bscd05j"]
+
+[ext_resource type="PackedScene" uid="uid://b7ks3pca5xuap" path="res://player.tscn" id="1_64b4l"]
+[ext_resource type="Script" path="res://main_screen.gd" id="1_s80tc"]
+[ext_resource type="Script" path="res://player.gd" id="2_7ws5t"]
+[ext_resource type="PackedScene" uid="uid://bhljjbh4yn358" path="res://box.tscn" id="2_kijq1"]
+[ext_resource type="PackedScene" uid="uid://d4ysqc4n1pu7" path="res://bricks.tscn" id="2_reaqf"]
+[ext_resource type="PackedScene" uid="uid://c8kyaa6aaonqr" path="res://hearts.tscn" id="3_dous4"]
+[ext_resource type="PackedScene" uid="uid://bgxjf4c3h8d60" path="res://ball.tscn" id="4_vqtkd"]
+[ext_resource type="Script" path="res://ball.gd" id="5_m0ofd"]
+[ext_resource type="PackedScene" uid="uid://vrggqdq6axtw" path="res://panels.tscn" id="8_gvx5c"]
+
+[node name="MainScreen" type="Node2D"]
+script = ExtResource("1_s80tc")
+Bricks = ExtResource("2_reaqf")
+Hearts = ExtResource("3_dous4")
+
+[node name="Player" parent="." instance=ExtResource("1_64b4l")]
+position = Vector2(683, 718)
+disable_mode = 2
+motion_mode = 1
+platform_on_leave = 2
+safe_margin = 1.0
+script = ExtResource("2_7ws5t")
+
+[node name="Box" parent="." instance=ExtResource("2_kijq1")]
+
+[node name="Ball" parent="." instance=ExtResource("4_vqtkd")]
+position = Vector2(681, 664)
+motion_mode = 1
+script = ExtResource("5_m0ofd")
+
+[node name="Panels" parent="." instance=ExtResource("8_gvx5c")]

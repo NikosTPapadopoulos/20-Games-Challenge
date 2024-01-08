@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4ysqc4n1pu7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vbvuv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6hcs"]
+size = Vector2(100, 50)
+
+[node name="Bricks" type="Node2D"]
+
+[node name="Red" type="StaticBody2D" parent="."]
+position = Vector2(75, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="Red"]
+modulate = Color(0.678431, 0, 0, 1)
+scale = Vector2(100, 50)
+texture = SubResource("CanvasTexture_vbvuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
+shape = SubResource("RectangleShape2D_p6hcs")
+
+[node name="Orange" type="StaticBody2D" parent="."]
+position = Vector2(75, 105)
+
+[node name="Sprite2D" type="Sprite2D" parent="Orange"]
+modulate = Color(0.588235, 0.34902, 0, 1)
+scale = Vector2(100, 50)
+texture = SubResource("CanvasTexture_vbvuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Orange"]
+shape = SubResource("RectangleShape2D_p6hcs")
+
+[node name="Yellow" type="StaticBody2D" parent="."]
+position = Vector2(75, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="Yellow"]
+modulate = Color(0.752941, 0.588235, 0, 1)
+scale = Vector2(100, 50)
+texture = SubResource("CanvasTexture_vbvuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Yellow"]
+shape = SubResource("RectangleShape2D_p6hcs")
+
+[node name="Green" type="StaticBody2D" parent="."]
+position = Vector2(75, 215)
+
+[node name="Sprite2D" type="Sprite2D" parent="Green"]
+modulate = Color(0, 0.737255, 0.223529, 1)
+scale = Vector2(100, 50)
+texture = SubResource("CanvasTexture_vbvuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Green"]
+shape = SubResource("RectangleShape2D_p6hcs")
+
+[node name="Blue" type="StaticBody2D" parent="."]
+position = Vector2(75, 270)
+
+[node name="Sprite2D" type="Sprite2D" parent="Blue"]
+modulate = Color(0, 0.666667, 1, 1)
+scale = Vector2(100, 50)
+texture = SubResource("CanvasTexture_vbvuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]
+shape = SubResource("RectangleShape2D_p6hcs")

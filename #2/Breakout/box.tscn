@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhljjbh4yn358"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hbnwq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhcrd"]
+size = Vector2(1366, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxyl8"]
+size = Vector2(50, 768)
+
+[node name="Box" type="StaticBody2D"]
+
+[node name="Top" type="Sprite2D" parent="."]
+position = Vector2(683, -15)
+scale = Vector2(1366, 50)
+texture = SubResource("CanvasTexture_hbnwq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(683, -15)
+shape = SubResource("RectangleShape2D_nhcrd")
+
+[node name="Left" type="Sprite2D" parent="."]
+position = Vector2(-15, 384)
+scale = Vector2(50, 768)
+texture = SubResource("CanvasTexture_hbnwq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-15, 384)
+shape = SubResource("RectangleShape2D_wxyl8")
+
+[node name="Right" type="Sprite2D" parent="."]
+position = Vector2(1381, 384)
+scale = Vector2(50, 768)
+texture = SubResource("CanvasTexture_hbnwq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(1381, 384)
+shape = SubResource("RectangleShape2D_wxyl8")
